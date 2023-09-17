@@ -22,33 +22,30 @@ public class Character : MonoBehaviour
 
     private float _damageValue;
     private float _healthValue;
-    private float _correctHealth;
 
     public event Action<float> HealthChanged;
 
     public float MaxHealth => _maxHealth;
-    public float CorrectHealth => _correctHealth;
+    public float Health => _health;
 
     private void Start()
     {
         _damageValue = _damageButton.DamageValue;
         _healthValue = _healthButton.HealValue;
-
-        _correctHealth = _health;
     }
 
     public void TakeDamage()
     {
         _spriteRenderer.DOColor(Color.white, 0).SetLoops(2, LoopType.Yoyo);
 
-        if (_correctHealth > 0)
+        if (_health > 0)
         {
-            _correctHealth -= _damageValue;
-            HealthChanged?.Invoke(_correctHealth);
+            _health -= _damageValue;
+            HealthChanged?.Invoke(_health);
         }
         else
         {
-            _correctHealth = 0;
+            _health = 0;
         }
 
         _spriteRenderer.DOColor(Color.red, _speedColorChange).SetLoops(2, LoopType.Yoyo);
@@ -58,14 +55,14 @@ public class Character : MonoBehaviour
     {
         _spriteRenderer.DOColor(Color.white, 0).SetLoops(2, LoopType.Yoyo);
 
-        if (_correctHealth < _maxHealth)
+        if (_health < _maxHealth)
         {
-            _correctHealth += _healthValue;
-            HealthChanged?.Invoke(_correctHealth);
+            _health += _healthValue;
+            HealthChanged?.Invoke(_health);
         }
         else
         {
-            _correctHealth = _maxHealth;
+            _health = _maxHealth;
         }
 
         _spriteRenderer.DOColor(Color.green, _speedColorChange).SetLoops(2, LoopType.Yoyo);
