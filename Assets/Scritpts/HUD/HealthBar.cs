@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,10 +8,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Character))]
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private Slider _valueSlider;
-    [SerializeField] private Slider _easeValueSlider;
+    [SerializeField] private Slider _sliderHealth;
+    [SerializeField] private Slider _easeSliderHealth;
     [SerializeField] private Character _character;
-    [SerializeField] private float _lerpSpeed = 0.05f;
+    [SerializeField] private float _lerpSpeed;
 
     private float _correctHealth;
 
@@ -19,42 +20,56 @@ public class HealthBar : MonoBehaviour
         _character = GetComponent<Character>();
 
         SetMaxHealth(_character.MaxHealth, _character.Health);
+    }
 
+    private void OnEnable()
+    {
         _character.HealthChanged += GetCorrectHealth;
+    }
+
+    private void OnDisable()
+    {
+        _character.HealthChanged -= GetCorrectHealth;
     }
 
     private void SetMaxHealth(float MaxHealthValue, float Health)
     {
-        _valueSlider.maxValue = MaxHealthValue;
-        _easeValueSlider.maxValue = MaxHealthValue;
+        _sliderHealth.maxValue = MaxHealthValue;
+        _easeSliderHealth.maxValue = MaxHealthValue;
 
-        _valueSlider.value = Health;
-        _easeValueSlider.value = Health;
+        _sliderHealth.value = Health;
+        _easeSliderHealth.value = Health;
     }
 
     private void GetCorrectHealth(float health)
     {
-        _correctHealth = _character.Health;
+        _correctHealth = Mathf.Clamp(_character.Health, 0, _sliderHealth.maxValue);
         var SetCorrectHealthIsJob = StartCoroutine(SetCorrectHealth());
+    }
+
+    private float Animate(float sliderValue, float correctValue)
+    {
+        sliderValue = Mathf.MoveTowards(sliderValue, correctValue, _lerpSpeed);
+        return sliderValue;
     }
 
     private IEnumerator SetCorrectHealth()
     {
-        if (_character.Health <= _valueSlider.value)
+        if (_correctHealth <= _sliderHealth.value) 
         {
-            _valueSlider.value = _correctHealth;
-            for (int i = 0; i < _correctHealth; i++)
+            _sliderHealth.value = _correctHealth;
+            while (_sliderHealth.value != _easeSliderHealth.value)
             {
-                _easeValueSlider.value = Mathf.Lerp(_easeValueSlider.value, _correctHealth, _lerpSpeed);
+                _easeSliderHealth.value = Animate(_easeSliderHealth.value, _correctHealth);
                 yield return null;
             }
         }
-        else 
+        else
         {
-            _easeValueSlider.value = _correctHealth;
-            for (int i = 0; i < _correctHealth; i++)
+            _easeSliderHealth.value = _correctHealth;
+            while (_sliderHealth.value != _easeSliderHealth.value)
             {
-                _valueSlider.value = Mathf.Lerp(_valueSlider.value, _correctHealth, _lerpSpeed);
+                _sliderHealth.value = Animate(_sliderHealth.value, _correctHealth);
                 yield return null;
             }
         }

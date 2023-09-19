@@ -12,8 +12,8 @@ public class Character : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
         
     [Header("Объекты взаимодействия")]
-    [SerializeField] private Damage _damageButton;
-    [SerializeField] private Heal _healthButton;
+    [SerializeField] private Damage _takeDamage;
+    [SerializeField] private Heal _heal;
 
     [Header("Характеристики персонажа")]
     [SerializeField] private float _health;
@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
     [SerializeField] private float _speedColorChange;
 
     private float _damageValue;
-    private float _healthValue;
+    private float _healValue;
 
     public event Action<float> HealthChanged;
 
@@ -30,8 +30,8 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        _damageValue = _damageButton.DamageValue;
-        _healthValue = _healthButton.HealValue;
+        _damageValue = _takeDamage.DamageValue;
+        _healValue = _heal.HealValue;
     }
 
     public void TakeDamage()
@@ -51,13 +51,13 @@ public class Character : MonoBehaviour
         _spriteRenderer.DOColor(Color.red, _speedColorChange).SetLoops(2, LoopType.Yoyo);
     }
 
-    public void TakeHealth()
+    public void Heal()
     {
         _spriteRenderer.DOColor(Color.white, 0).SetLoops(2, LoopType.Yoyo);
 
         if (_health < _maxHealth)
         {
-            _health += _healthValue;
+            _health += _healValue;
             HealthChanged?.Invoke(_health);
         }
         else

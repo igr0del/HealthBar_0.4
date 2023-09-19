@@ -434,6 +434,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Buttons
       objectReference: {fileID: 0}
+    - target: {fileID: 4638942918973811082, guid: f570807b6e00bf7439824815a049e357, type: 3}
+      propertyPath: _damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228375104627447186, guid: f570807b6e00bf7439824815a049e357, type: 3}
+      propertyPath: _heal
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6484179845054002120, guid: f570807b6e00bf7439824815a049e357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -452,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 1744674912}
     - target: {fileID: 7055058280293912181, guid: f570807b6e00bf7439824815a049e357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TakeHealth
+      value: Heal
       objectReference: {fileID: 0}
     - target: {fileID: 7055058280293912181, guid: f570807b6e00bf7439824815a049e357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -523,6 +531,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3735209084199539876, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
+      propertyPath: m_Name
+      value: SlideHealth
+      objectReference: {fileID: 0}
     - target: {fileID: 5697682439228100678, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
       propertyPath: m_Name
       value: Character
@@ -536,6 +548,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6607577355057406455, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
+      propertyPath: _heal
+      value: 
+      objectReference: {fileID: 1748680965}
+    - target: {fileID: 6607577355057406455, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
       propertyPath: _Health
       value: 1000
       objectReference: {fileID: 0}
@@ -543,6 +559,10 @@ PrefabInstance:
       propertyPath: _health
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 6607577355057406455, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
+      propertyPath: _takeDamage
+      value: 
+      objectReference: {fileID: 1381120766}
     - target: {fileID: 6607577355057406455, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
       propertyPath: _damageButton
       value: 
@@ -553,14 +573,38 @@ PrefabInstance:
       objectReference: {fileID: 1748680965}
     - target: {fileID: 6607577355057406455, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
       propertyPath: _speedColorChange
-      value: 0.05
+      value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7787549201355982244, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
+      propertyPath: m_Name
+      value: EaseSliderHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270438430182347432, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
+      propertyPath: _slider
+      value: 
+      objectReference: {fileID: 1936412368}
+    - target: {fileID: 8270438430182347432, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
+      propertyPath: _lerpSpeed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270438430182347432, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
+      propertyPath: _easeSlider
+      value: 
+      objectReference: {fileID: 1321632419}
     - target: {fileID: 8270438430182347432, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
       propertyPath: _valueSlider
       value: 
       objectReference: {fileID: 1936412368}
     - target: {fileID: 8270438430182347432, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
+      propertyPath: _sliderHealth
+      value: 
+      objectReference: {fileID: 1936412368}
+    - target: {fileID: 8270438430182347432, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
       propertyPath: _easeValueSlider
+      value: 
+      objectReference: {fileID: 1321632419}
+    - target: {fileID: 8270438430182347432, guid: cd1b26dc09cf2df4fb37fd57ba517cd0, type: 3}
+      propertyPath: _easeSliderHealth
       value: 
       objectReference: {fileID: 1321632419}
     m_RemovedComponents: []
